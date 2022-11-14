@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Oswald', sans-serif;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #A36442;
+}
+
+:root {
+    --cell-size: 120px;
+    --mark-size: calc(var(--cell-size) * 0.9);
+}
+
+.game-container {
+    height: 500px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.5);
+}
+
+.player-box {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.player-box h3:first-child {
+    color: #153C67;
+}
+
+.player-box h3:last-child {
+    color: #981B17;
+}
+
+.player-box h3 span {
+    color: white;
+    margin-left: 5px;
+    font-size: 22px;
+}
+
+.board {
+    height: 360px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.cell {
+    height: 120px;
+    width: 120px;
+    border: 1px solid white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+    border-top: none;
+}
+
+.cell:first-child,
+.cell:nth-child(4),
+.cell:nth-child(7) {
+    border-left: none;
+}
+
+.cell:last-child,
+.cell:nth-child(7),
+.cell:nth-child(8) {
+    border-bottom: none;
+}
+
+.cell:last-child,
+.cell:nth-child(3),
+.cell:nth-child(6) {
+    border-right: none;
+}
+
+.cell.x,
+.cell.circle {
+  cursor: not-allowed;
+}
+
+.cell.x::before,
+.cell.x::after {
+    background: black;
+}
+
+.board.x .cell:hover:not(.x):not(.circle)::before,
+.board.x .cell:hover:not(.x):not(.circle)::after {
+    background: lightgray;
+}
+
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:hover:not(.x):not(.circle)::before,
+.board.x .cell:hover:not(.x):not(.circle)::after {
+    content: '';
+    position: absolute;
+    height: var(--mark-size);
+    width: calc(var(--mark-size) * .15);
+}
+
+.cell.x::before,
+.board.x .cell:hover:not(.x):not(.circle)::before {
+    transform: rotate(45deg);
+}
+
+.cell.x::after,
+.board.x .cell:hover:not(.x):not(.circle)::after {
+    transform: rotate(-45deg);
+}
+
+.cell.circle::before,
+.cell.circle::after,
+.board.circle .cell:hover:not(.x):not(.circle)::before,
+.board.circle .cell:hover:not(.x):not(.circle)::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+
+.cell.circle::before,
+.board.circle .cell:hover:not(.x):not(.circle)::before {
+    width: var(--mark-size);
+    height: var(--mark-size);
+}
+
+.cell.circle::before {
+    background: black;
+}
+
+.board.circle .cell:hover:not(.x):not(.circle)::before {
+    background: lightgray;
+}
+
+.cell.circle::after,
+.board.circle .cell:hover:not(.x):not(.circle)::after {
+    width: calc(var(--mark-size) * 0.7);
+    height: calc(var(--mark-size) * 0.7);
+    background: #A36442;
+}
+
+@media screen and (max-width: 400px) {
+    .game-container {
+        width: 90%;
+    }
+
+    .board {
+        height: 300px;
+    }
+
+    .cell {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media screen and (max-width: 330px) {
+    .board {
+        height: 240px;
+    }
+    
+    .cell {
+        width: 80px;
+        height: 80px;
+    }
+}
