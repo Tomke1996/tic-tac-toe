@@ -184,4 +184,25 @@ body {
         width: 80px;
         height: 80px;
     }
+    
+    .cell.x::before,
+    .cell.x::after,
+    .board.x .cell:hover:not(.x):not(.circle)::before,
+    .board.x .cell:hover:not(.x):not(.circle)::after {
+        --mark-size: calc(var(--cell-size) * 0.6);
+        height: var(--mark-size);
+        width: calc(var(--mark-size) * .15);
+    }
+
+    .cell.circle::before,
+    .board.circle .cell:hover:not(.x):not(.circle)::before {
+        --mark-size: calc(var(--cell-size) * 0.6);
+        width: var(--mark-size);
+        height: var(--mark-size);
+    }
+    .cell.circle::after,
+    .board.circle .cell:hover:not(.x):not(.circle)::after {
+        width: calc(var(--mark-size) * 0.4);
+        height: calc(var(--mark-size) * 0.4);
+    }
 }
